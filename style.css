@@ -21,3 +21,9 @@ body {
     width: 286px;
     height: 222px;
 }
+@media screen and (max-width:480px){
+  .container {
+    grid: auto / auto;
+    row-gap: 4vh;
+  }
+}
