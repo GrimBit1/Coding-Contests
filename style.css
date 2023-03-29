@@ -16,6 +16,12 @@ body {
   max-width: fit-content;
   max-width: '-moz-fit-content';
 }
+.card-body {
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+   justify-content: space-between;
+}
 .card-img-top{
     object-fit: cover;
     width: 286px;
