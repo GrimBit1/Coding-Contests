@@ -1,21 +1,46 @@
 let container = document.getElementsByClassName("container")[0];
+
+
+let search = document.getElementsByClassName("form-control")[0];
+
+
+let card = document.getElementsByClassName("card");
+
+
+let title = document.getElementsByClassName("title")[0];
+
+let titleText = title.innerText;
+
+console.log(titleText);
+
+
 console.log(container);
 
+
 let allCardsHtml = "";
+
 let randomUniqueNumArr = [];
+
 
 const fetchContest = async () => {
   let api = "https://kontests.net/api/v1/all";
+
   let contestResponse = fetch(api);
+
   let imgSrc = "";
+
   let allContest = await contestResponse.then(
     (value) => value.json(),
     (err) => {
       console.log("Error Occured");
+
     }
   );
+
   let allContestLength = allContest.length;
+
   // console.log(allContest);
+
 
   // Requesting the image for each card
   allContest.forEach(async (element) => {
@@ -28,6 +53,7 @@ const fetchContest = async () => {
         },
       }
     );
+
     // If the response is not good then
     if (!response.ok) {
       response = await fetch(
@@ -39,45 +65,99 @@ const fetchContest = async () => {
           },
         }
       );
+
       let value = await response.json();
 
 
       // To generate a random num which doesn't come again
       let randomNum = parseInt(Math.random() * allContestLength);
+
       while (randomUniqueNumArr.includes(randomNum)) {
         randomNum = parseInt(Math.random() * allContestLength);
+
       }
       randomUniqueNumArr.push(randomNum);
-      imgSrc = value.photos[randomNum].src.large;
-    }
 
+      imgSrc = value.photos[randomNum].src.large;
+
+    }
 
     // If the response is good then
     else if (response.ok) {
       let value = await response.json();
+
       imgSrc = value.urls.regular;
+
     } else {
     }
 
     // To populate the container according to the array of contest
-    container.innerHTML += `<div class="card" style="width: 18rem">
-        <img src="${imgSrc}" class="card-img-top" alt="${element.name}" />
-        <div class="card-body">
-          <h5 class="card-title">${element.name}</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <div class="status">${
-            element.status == "CODING" ? "Live" : "Not Started"
-          }</div>
-          <a href="${element.url}" class="btn btn-primary">Go to ${
-      element.site
-    }</a>
-        </div>
-      </div>`;
+    allCardsHtml += `<div class="card" style="width: 18rem">
+    <img src="${imgSrc}" class="card-img-top" alt="${element.name}" />
+    <div class="card-body">
+      <h5 class="card-title">${element.name}</h5>
+      
+        <h6>Creator</h6>
+        <h6 class='site'>${element.site}</h6>
+      <div class="status">${
+        element.status == "CODING" ? "Live" : "Not Started"
+      }</div>
+      <a href="${element.url}" class="btn btn-primary">Go to ${element.site}</a>
+    </div>
+  </div>`;
+
+
+    container.innerHTML = allCardsHtml;
+
   });
+
 
   // container.innerHTML += allCardsHtml
 };
+
 fetchContest();
+
+
+const searchValue = () => {
+
+  container.innerHTML = allCardsHtml;
+
+  title.innerText = titleText;
+
+  if (searchValue != ``) {
+    let allSearch = Array.from(card);
+
+    title.innerText = search.value;
+
+    // console.log(allSearch);
+
+
+    let filterSearch = allSearch.filter((element) => {
+      
+      return element.lastElementChild.lastElementChild.innerText.includes(
+        search.value
+      ); // to search which creator is hosting that
+
+    });
+
+
+    // console.log(filterSearch);
+
+
+    container.innerHTML = ``;
+
+
+    filterSearch.forEach((element) => {
+      // console.log(element);
+
+
+      container.innerHTML += element.outerHTML; // Adding the filtered element
+
+    });
+
+  }
+
+  // container.childNodes = [...filterSearch]
+  // console.log(container)
+};
+

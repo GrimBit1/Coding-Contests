@@ -63,21 +63,16 @@
               <a class="nav-link disabled">Disabled</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
+          <form class="d-flex" role="">
+            <input class="form-control me-2" type="text" onchange="searchValue()" placeholder="Search for the Creator" aria-label="Search for the Creator" />
+            <button class="btn btn-outline-success" type="button" onclick="searchValue()">
               Search
             </button>
           </form>
         </div>
       </div>
     </nav>
-    <h1 style="text-align: center;">All Contests</h1>
+    <h1 class="title" style="text-align: center;">All Contests</h1>
     <div class="container">
     </div>
     <script src="script.js"></script>
