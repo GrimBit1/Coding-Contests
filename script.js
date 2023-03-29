@@ -127,15 +127,18 @@ const searchValue = () => {
   if (searchValue != ``) {
     let allSearch = Array.from(card);
 
-    title.innerText = search.value;
+    title.innerText = `${search.value}`.toUpperCase();
 
     // console.log(allSearch);
 
 
-    let filterSearch = allSearch.filter((element) => {
-      
-      return element.lastElementChild.lastElementChild.innerText.includes(
-        search.value
+    let filterSearch = allSearch.filter((element) => { 
+      let elementTxt = `${element.lastElementChild.lastElementChild.innerText}`.toLowerCase()
+      console.log(elementTxt)
+      let lowerSearch = `${search.value}`.toLowerCase()
+console.log(lowerSearch)
+      return elementTxt.includes(
+        lowerSearch
       ); // to search which creator is hosting that
 
     });
@@ -148,7 +151,7 @@ const searchValue = () => {
 
 
     filterSearch.forEach((element) => {
-      // console.log(element);
+      //console.log(element);
 
 
       container.innerHTML += element.outerHTML; // Adding the filtered element

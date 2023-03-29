@@ -16,6 +16,10 @@ body {
   max-width: fit-content;
   max-width: '-moz-fit-content';
 }
+.card{
+  transition : all 1s ease;
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
