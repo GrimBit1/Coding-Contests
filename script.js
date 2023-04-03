@@ -99,8 +99,7 @@ const fetchContest = async () => {
       
         <h6>Creator</h6>
         <h6 class='site'>${element.site}</h6>
-      <div class="status">${
-        element.status == "CODING" ? "Live" : "Not Started"
+      <div class="status">${element.status == "CODING" ? "Live" : "Not Started"
       }</div>
       <a href="${element.url}" class="btn btn-primary">Go to ${element.site}</a>
     </div>
@@ -132,11 +131,11 @@ const searchValue = () => {
     // console.log(allSearch);
 
 
-    let filterSearch = allSearch.filter((element) => { 
+    let filterSearch = allSearch.filter((element) => {
       let elementTxt = `${element.lastElementChild.lastElementChild.innerText}`.toLowerCase()
-      console.log(elementTxt)
+      // console.log(elementTxt)
       let lowerSearch = `${search.value}`.toLowerCase()
-console.log(lowerSearch)
+      // console.log(lowerSearch)
       return elementTxt.includes(
         lowerSearch
       ); // to search which creator is hosting that
