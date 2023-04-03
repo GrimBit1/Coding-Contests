@@ -126,7 +126,7 @@ const searchValue = () => {
   if (search.value != ``) {
     let allSearch = Array.from(card);
 
-    title.innerText = `${search.value}`.toUpperCase();
+    title.innerText = `${search.value}`.trim().toUpperCase();
 
     // console.log(allSearch);
 
@@ -134,7 +134,7 @@ const searchValue = () => {
     let filterSearch = allSearch.filter((element) => {
       let elementTxt = `${element.lastElementChild.lastElementChild.innerText}`.toLowerCase()
       // console.log(elementTxt)
-      let lowerSearch = `${search.value}`.toLowerCase()
+      let lowerSearch = `${search.value}`.trim().toLowerCase()
       // console.log(lowerSearch)
       return elementTxt.includes(
         lowerSearch
