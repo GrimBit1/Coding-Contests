@@ -124,7 +124,7 @@ const searchValue = () => {
 
   title.innerText = titleText;
 
-  if (searchValue != ``) {
+  if (search.value != ``) {
     let allSearch = Array.from(card);
 
     title.innerText = `${search.value}`.toUpperCase();
@@ -159,6 +159,9 @@ console.log(lowerSearch)
     });
 
   }
+  // else{
+  //   title.innerText = titleText;
+  // }
 
   // container.childNodes = [...filterSearch]
   // console.log(container)
